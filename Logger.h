@@ -7,7 +7,7 @@ using namespace std;
 namespace LoggerClass
 {
     class Logger
-    {  
+    {
     public:
         virtual ostream& GetStream() = 0;
     };
@@ -23,9 +23,9 @@ namespace LoggerClass
     private:
         ofstream m_filellogger;
     public:
-       // FILE* log_fd = fopen("isha.txt", "a");
+
         ostream& GetStream();
-        FileLogger(std::string filename)
+        FileLogger(std::string filename) 
         {
             m_filellogger.open(filename.c_str());
         }
@@ -34,14 +34,14 @@ namespace LoggerClass
             m_filellogger.close();
         }
     };
-    
+
     class LoggerFactory
     {
     public:
         static Logger* CreateFileLogger(std::string FilePath);
         static Logger* CreateConsoleLogger();
     };
- static LoggerClass::Logger* g_logger = LoggerClass::LoggerFactory::CreateFileLogger("isha.log");
+    static LoggerClass::Logger* g_logger = LoggerClass::LoggerFactory::CreateFileLogger("isha.log");
     //static Logger* g_logger = LoggerFactory::CreateConsoleLogger();
 #define LOG() g_logger->GetStream()
 }
